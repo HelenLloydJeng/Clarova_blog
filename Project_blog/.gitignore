@@ -1,0 +1,24 @@
+# Ignore virtual environments
+venv/
+.venv
+
+# Byte-compiled / cache files
+__pycache__/
+*.py[cod]
+*.sqlite3
+
+# Django stuff
+staticfiles/
+*.log
+
+# VS Code
+.vscode/
+
+# OS files
+.DS_Store
+
+# Environment settings
+*.env
+
+# Heroku
+
