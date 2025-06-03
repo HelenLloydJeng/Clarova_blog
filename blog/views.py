@@ -1,13 +1,13 @@
 from django.shortcuts import render, get_object_or_404, redirect
+from .models import Post
+from .forms import PostForm
 
 
 def home(request):
     return render(request, 'home.html')
 
+
 # Create your views here.
- 
-from .models import Post
-from .forms import PostForm
 
 def post_list(request):
     posts = Post.objects.all()
