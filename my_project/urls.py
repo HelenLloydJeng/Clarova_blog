@@ -20,6 +20,8 @@ Including another URLconf
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('blog.urls')),
+    path('', include('blog.urls')),           # blog-related views
+    path('accounts/', include('django.contrib.auth.urls')),  # login/logout
+    path('users/', include('users.urls')),    # custom user routes
 ]
 
