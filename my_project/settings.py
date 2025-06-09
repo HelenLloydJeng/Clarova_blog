@@ -16,16 +16,12 @@ from pathlib import Path
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 import os
 
+import dj_database_url
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'my_blog_test',
-        'USER': 'postgres',
-        'PASSWORD': 'postgres',
-        'HOST': 'localhost',
-        'PORT': '5432',
-    }
+    'default': dj_database_url.config(conn_max_age=600, ssl_require=True)
 }
+
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
