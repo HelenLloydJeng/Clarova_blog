@@ -11,19 +11,30 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
+import dj_database_url
+import os
 # Importing dj_database_url to handle database configuration
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
-import os
-
-import dj_database_url
-
 DATABASES = {
     'default': dj_database_url.config(conn_max_age=600, ssl_require=True)
 }
 
-
-
+if os.getenv("DATABASE_URL"):  # for Heroku
+    DATABASES = {
+        'default': dj_database_url.config(conn_max_age=600, ssl_require=True)
+    }
+else:  # for local dev
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'my_blog_test',
+            'USER': 'postgres',
+            'PASSWORD': 'postgres',
+            'HOST': 'localhost',
+            'PORT': '5432',
+        }
+    }
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -126,6 +137,8 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 
 USE_TZ = True
+# settings.py
+LOGIN_REDIRECT_URL = '/users/profile/'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
