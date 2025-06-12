@@ -6,8 +6,10 @@ from .models import Post
 class PostTests(TestCase):
 
     def setUp(self):
-        self.post = Post.objects.create(title='Test Post', content='Test body content')
-
+        self.post = Post.objects.create(
+            title='Test Post',
+            content='Test body content'
+        )
 
     def test_post_list_view(self):
         response = self.client.get(reverse('post_list'))

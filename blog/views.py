@@ -3,6 +3,7 @@ from .models import Post
 from .forms import PostForm, CommentForm
 from django.contrib.auth.decorators import login_required
 
+
 def home(request):
     return render(request, 'home.html')
 
