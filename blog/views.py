@@ -17,7 +17,7 @@ def post_list(request):
 
 def post_detail(request, pk):
     post = get_object_or_404(Post, pk=pk)
-    comments = post.comments.all().order_by('-created_at')  # optional: newest first
+    comments = post.comments.all().order_by('-created_at')  # newest first
 
     comment_form = CommentForm()
 
