@@ -2,14 +2,21 @@
 {% block content %}
 <h1>{{ post.title }}</h1>
 <p>{{ post.content }}</p>
+
 <h2>Comments</h2>
-<ul>
+{% if comments %}
   {% for comment in comments %}
-    <li><strong>{{ comment.author }}</strong>: {{ comment.body }} ({{ comment.created_at|date:"F j, Y" }})</li>
-  {% empty %}
-    <li>No comments yet.</li>
+    <div style="margin-bottom: 1em;">
+      <strong>{{ comment.author }}</strong><br>
+      <small>{{ comment.created_at|date:"F j, Y, g:i a" }}</small>
+      <p>{{ comment.body }}</p>
+    </div>
   {% endfor %}
-</ul>
+{% else %}
+  <p>No comments yet.</p>
+{% endif %}
+
+    
 
 {% if user.is_authenticated %}
   <h3>Leave a comment</h3>
