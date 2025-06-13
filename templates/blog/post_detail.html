@@ -1,35 +1,45 @@
+
 {% extends 'base.html' %}
+
 {% block content %}
-<h1>{{ post.title }}</h1>
-<p>{{ post.content }}</p>
+  <div class="post-detail">
+    <h1>{{ post.title }}</h1>
+    <p class="text-muted">{{ post.created_at|date:"F j, Y" }} by {{ post.author }}</p>
+    <p>{{ post.content }}</p>
+  </div>
 
-<h2>Comments</h2>
-{% if comments %}
-  {% for comment in comments %}
-    <div style="margin-bottom: 1em;">
-      <strong>{{ comment.author }}</strong><br>
-      <small>{{ comment.created_at|date:"F j, Y, g:i a" }}</small>
-      <p>{{ comment.body }}</p>
+  <hr>
+
+  <div class="comments-section mt-4">
+    <h4>Comments</h4>
+
+    {% if comments %}
+      {% for comment in comments %}
+        <div class="comment mb-3 p-3 border rounded">
+          <strong>{{ comment.author }}</strong>
+          <small class="text-muted d-block">{{ comment.created_at|date:"F j, Y, g:i a" }}</small>
+          <p class="mt-2">{{ comment.body }}</p>
+        </div>
+      {% endfor %}
+    {% else %}
+      <p>No comments yet.</p>
+    {% endif %}
+  </div>
+
+  {% if user.is_authenticated %}
+    <div class="comment-form mt-4">
+      <h5>Leave a Comment</h5>
+      <form method="post">
+        {% csrf_token %}
+        {{ comment_form.as_p }}
+        <button type="submit" class="btn btn-primary btn-sm mt-2">Post Comment</button>
+      </form>
     </div>
-  {% endfor %}
-{% else %}
-  <p>No comments yet.</p>
-{% endif %}
+  {% else %}
+    <p><a href="{% url 'login' %}">Log in</a> to leave a comment.</p>
+  {% endif %}
 
-    
-
-{% if user.is_authenticated %}
-  <h3>Leave a comment</h3>
-  <form method="post" class="mb-3">
-    {% csrf_token %}
-    {{ comment_form.as_p }}
-    <button type="submit" class="btn btn-primary">Post Comment</button>
-  </form>
-{% else %}
-  <p><a href="{% url 'login' %}?next={{ request.path }}">Log in</a> to leave a comment.</p>
-{% endif %}
- 
-<a href="{% url 'post_update' post.pk %}">Edit</a>
-<a href="{% url 'post_delete' post.pk %}">Delete</a>
-<a href="{% url 'post_list' %}">Back to Posts</a>
+  <div class="mt-4">
+    <a href="{% url 'post_list' %}" class="btn btn-secondary btn-sm">← Back to Posts</a>
+  </div>
 {% endblock %}

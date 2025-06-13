@@ -29,3 +29,20 @@ footer {
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.05);
 }
+
+.post-detail {
+  padding: 1rem;
+  border: 1px solid #e1e1e1;
+  border-radius: 8px;
+  background-color: #fdfdfd;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.comments-section h4 {
+  margin-bottom: 1rem;
+}
+
+.comment {
+  background-color: #f8f9fa;
+}
+
