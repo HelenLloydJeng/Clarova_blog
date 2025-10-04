@@ -13,6 +13,9 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 from pathlib import Path
 import dj_database_url
 import os
+import environ
+env = environ.Env(DEBUG=(bool, False))
+environ.Env.read_env(os.path.join(Path(__file__).resolve().parent.parent, ".env"))
 # Importing dj_database_url to handle database configuration
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
@@ -49,12 +52,14 @@ SECRET_KEY = (
     ')ns%u'
 )
 
+# SECURITY WARNING: keep the secret key used in production secret!
+SECRET_KEY = env("SECRET_KEY")
+
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = env.bool("DEBUG", default=False)
 
-ALLOWED_HOSTS = [".herokuapp.com", '127.0.0.1']
-
-
+ALLOWED_HOSTS = env.list("ALLOWED_HOSTS", default=["localhost", "127.0.0.1"])
+CSRF_TRUSTED_ORIGINS = env.list("CSRF_TRUSTED_ORIGINS", default=[])
 # Application definition
 
 INSTALLED_APPS = [
