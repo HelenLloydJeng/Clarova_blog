@@ -1,21 +1,20 @@
+# Environment files
+.env
+.venv/
 
-# Environment
-.env
-.venv/
-.env
+# Python cache
 __pycache__/
+
+# Django static files
 staticfiles/
-.venv/
-.env
-$
-Building
-Compressing...
-Discarding
-Discovering
-Installing
-Launching...
-Python
-Saving
-Using
-main
-web
+
+# OS / IDE files
+*.pyc
+*.pyo
+*.db
+*.sqlite3
+.DS_Store
+Thumbs.db
+
+# Node / build artefacts (if any)
+node_modules/
