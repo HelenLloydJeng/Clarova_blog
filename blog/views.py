@@ -15,6 +15,7 @@ def post_list(request):
     posts = Post.objects.all()
     return render(request, 'blog/post_list.html', {'posts': posts})
 
+
 def post_detail(request, pk):
     post = get_object_or_404(Post, pk=pk)
     comments = post.comments.all().order_by('-created_at')  # newest first
@@ -39,18 +40,18 @@ def post_detail(request, pk):
         'comment_form': comment_form,
     })
 
-
-
+@login_required
 def post_create(request):
     if request.method == "POST":
         form = PostForm(request.POST)
         if form.is_valid():
-            form.save()
+            post = form.save(commit=False)   # don't save yet
+            post.author = request.user       # set the author
+            post.save()                      # now save
             return redirect('post_list')
     else:
         form = PostForm()
     return render(request, 'blog/post_form.html', {'form': form})
-
 
 def post_update(request, pk):
     post = get_object_or_404(Post, pk=pk)

@@ -45,4 +45,86 @@ footer {
 .comment {
   background-color: #f8f9fa;
 }
+/* Clarova Blog Home Styling */
+.hero {
+  position: relative;
+  background: url("../img/hero_image.jpg") no-repeat center center/cover;
+  color: white;
+  height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.hero .overlay {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+}
+
+.hero h1 {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 3rem;
+  color: #fff;
+}
+
+.hero p {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 1.2rem;
+  margin: 20px 0;
+}
+
+.btn-primary, .btn-secondary {
+  display: inline-block;
+  padding: 10px 25px;
+  border-radius: 8px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.btn-primary {
+  background-color: #4A6EDB;
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: #3A5CC7;
+}
+
+.btn-secondary {
+  border: 2px solid #00B6B4;
+  color: #00B6B4;
+}
+
+.btn-secondary:hover {
+  background-color: #00B6B4;
+  color: white;
+}
+
+.intro {
+  padding: 80px 0;
+}
+
+.intro h2 {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  color: #333;
+}
+
+.intro p {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 1.1rem;
+  color: #555;
+  max-width: 700px;
+  margin: 20px auto 40px;
+}
 
