@@ -28,8 +28,24 @@
       </div>
     </nav>
 
-    <!-- Main Content -->
+      <!-- Main Content -->
     <main class="container">
+
+      {# --- Django messages block (Bootstrap alerts) --- #}
+      {% if messages %}
+        <div class="mb-3" role="status" aria-live="polite">
+          {% for message in messages %}
+            <div class="alert 
+              {% if message.tags == 'error' %}alert-danger
+              {% else %}alert-{{ message.tags|default:'info' }}
+              {% endif %} mb-2" role="alert">
+              {{ message }}
+            </div>
+          {% endfor %}
+        </div>
+      {% endif %}
+      {# --- end messages block --- #}
+
       {% block content %}{% endblock %}
     </main>
 
