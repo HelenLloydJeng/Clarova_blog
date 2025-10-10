@@ -21,8 +21,8 @@
         <p>
           <a href="{% url 'post_detail' post.pk %}" class="action-link">Read more</a>
           {% if user.is_authenticated and user == post.author %}
-            • <a href="{% url 'post_update' post.pk %}" class="action-link">Edit</a>
-            • <a href="{% url 'post_delete' post.pk %}" class="action-link danger">Delete</a>
+            <a href="{% url 'post_update' post.pk %}" class="action-link">Edit</a>
+            <a href="{% url 'post_delete' post.pk %}" class="action-link danger">Delete</a>
           {% endif %}
         </p>
       </div>
