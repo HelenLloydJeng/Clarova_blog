@@ -1,23 +1,26 @@
 
 {% extends 'base.html' %}
 
+
 {% block content %}
   <div class="post-detail">
     <h1>{{ post.title }}</h1>
     <p class="text-muted">{{ post.created_at|date:"F j, Y" }} by {{ post.author }}</p>
-    <p>{{ post.content }}</p>
-  </div>
 
-  <!-- Turn newlines into real paragraphs -->
-    <article class="post-body">
-      {{ post.content|linebreaks }}
+    <article class="post-body mt-4">
+      {{ post.content|safe }} 
     </article>
+    
   </div>
 
   <hr>
 
   <div class="comments-section mt-4">
     <h4>Comments</h4>
+    {% endblock %}
+
+
+
 
     {% if comments %}
       {% for comment in comments %}
