@@ -82,32 +82,40 @@ footer {
   margin: 20px 0;
 }
 
-.btn-primary, .btn-secondary {
-  display: inline-block;
-  padding: 10px 25px;
-  border-radius: 8px;
-  font-weight: 600;
-  text-decoration: none;
+/* Global button adjustments (e.g., overriding Bootstrap's default border-radius) */
+.btn {
+  border-radius: 8px; /* Changed from 5px to 8px to match your custom button feel */
+  font-weight: 600;   /* Use 600 weight for all buttons */
   transition: all 0.3s ease;
 }
 
+
+
+/* Primary Button (Overrides Bootstrap .btn-primary) */
 .btn-primary {
-  background-color: #4A6EDB;
-  color: white;
+background-color: #4A6EDB; /* Your custom blue */
+color: white;
+    /* !important ensures your color overrides Bootstrap's default */
+    border-color: #4A6EDB !important; 
 }
 
 .btn-primary:hover {
-  background-color: #3A5CC7;
+background-color: #3A5CC7; /* Your custom darker blue on hover */
+border-color: #3A5CC7 !important;
 }
 
+/* Secondary Button (Overrides Bootstrap .btn-secondary) */
 .btn-secondary {
-  border: 2px solid #00B6B4;
-  color: #00B6B4;
+    /* Use !important to ensure your custom color and border are applied,
+       as Bootstrap's secondary class might have specific rules. */
+border: 2px solid #00B6B4 !important; /* Your custom teal border */
+color: #00B6B4 !important;           /* Your custom teal text color */
+    background-color: transparent !important; /* Ensure it stays a ghost button */
 }
 
 .btn-secondary:hover {
-  background-color: #00B6B4;
-  color: white;
+background-color: #00B6B4 !important; /* Fill on hover */
+color: white !important;             /* White text on hover */
 }
 
 .intro {
@@ -127,4 +135,10 @@ footer {
   max-width: 700px;
   margin: 20px auto 40px;
 }
+
+.post.content p { margin-bottom: 1rem; line-height: 1.7; }
+.post-body p { margin-bottom: 1rem; line-height: 1.7; }
+.post-item .meta { color:#6c757d; }
+.post-item p { line-height: 1.7; }
+
 

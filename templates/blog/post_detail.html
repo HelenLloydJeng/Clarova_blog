@@ -8,6 +8,12 @@
     <p>{{ post.content }}</p>
   </div>
 
+  <!-- Turn newlines into real paragraphs -->
+    <article class="post-body">
+      {{ post.content|linebreaks }}
+    </article>
+  </div>
+
   <hr>
 
   <div class="comments-section mt-4">

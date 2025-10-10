@@ -12,7 +12,11 @@
       <div class="post-item">
         <h3><a href="{% url 'post_detail' post.pk %}">{{ post.title }}</a></h3>
         <p class="meta">{{ post.created_at|date:"F j, Y" }} by {{ post.author }}</p>
-        <p>{{ post.content|truncatewords:30 }}</p>
+
+         <p class="text-muted mb-0">
+         {{ post.content|truncatewords:40|linebreaksbr }}
+          </p>
+
 
         <p>
           <a href="{% url 'post_detail' post.pk %}" class="action-link">Read more</a>

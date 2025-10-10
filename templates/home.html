@@ -4,21 +4,21 @@
 {% block title %}Clarova Blog{% endblock %}
 
 {% block content %}
-<section class="hero">
-  <div class="overlay"></div>
-  <div class="hero-content text-center">
-    <h1>Welcome to the Clarova Blog</h1>
-    <p>Exploring responsible AI, communications, and innovation.</p>
-    <a href="{% url 'post_list' %}" class="btn-primary">View Posts</a>
-  </div>
-</section>
+  <section class="hero">
+    <div class="overlay"></div>
+    <div class="hero-content text-center">
+      <h1>Welcome to the Clarova Blog</h1>
+      <p>Exploring responsible AI, communications, and innovation.</p>
+      <a href="{% url 'post_list' %}" class="btn btn-primary btn-lg">View Posts</a>
+    </div>
+  </section>
 
-<section class="intro container text-center">
-  <h2>Insights for the Future of AI in Communications</h2>
-  <p>
-    Clarova helps communicators and leaders understand, adopt, and govern AI responsibly.
-    Explore our latest insights, ethical frameworks, and sector innovations below.
-  </p>
-  <a href="{% url 'post_list' %}" class="btn-secondary">Browse Blog</a>
-</section>
+  <section class="intro container text-center">
+    <h2>Insights for the Future of AI in Communications</h2>
+    <p>
+      Clarova helps communicators and leaders understand, adopt, and govern AI responsibly.
+      Explore our latest insights, ethical frameworks, and sector innovations below.
+    </p>
+    <a href="{% url 'post_list' %}" class="btn btn-secondary btn-lg">Browse Blog</a>
+  </section>
 {% endblock %}
