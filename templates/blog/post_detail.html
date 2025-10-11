@@ -1,8 +1,5 @@
-
 {% extends 'base.html' %}
-
-
-{% block content %}
+{% load static %} {% block content %}
   <div class="post-detail">
     <h1>{{ post.title }}</h1>
     <p class="text-muted">{{ post.created_at|date:"F j, Y" }} by {{ post.author }}</p>
@@ -11,17 +8,31 @@
       {{ post.content|safe }} 
     </article>
     
+    <div class="like-dislike-section my-4" data-post-id="{{ post.pk }}">
+        {% if user.is_authenticated %}
+            <button class="btn btn-sm {% if user_has_liked %}btn-primary{% else %}btn-outline-primary{% endif %}" 
+                    id="like-button">
+                <i class="far fa-thumbs-up"></i> Like (<span id="like-count">{{ post.total_likes }}</span>)
+            </button>
+            
+            <button class="btn btn-sm {% if user_has_disliked %}btn-danger{% else %}btn-outline-danger{% endif %}" 
+                    id="dislike-button">
+                <i class="far fa-thumbs-down"></i> Dislike (<span id="dislike-count">{{ post.total_dislikes }}</span>)
+            </button>
+        {% else %}
+            <span class="badge bg-primary">Likes: {{ post.total_likes }}</span>
+            <span class="badge bg-danger">Dislikes: {{ post.total_dislikes }}</span>
+            <small class="text-muted ms-2"><a href="{% url 'login' %}">Log in</a> to vote.</small>
+        {% endif %}
+    </div>
+    
   </div>
 
   <hr>
 
   <div class="comments-section mt-4">
     <h4>Comments</h4>
-  
-
-
-
-
+ 
     {% if comments %}
       {% for comment in comments %}
         <div class="comment mb-3 p-3 border rounded">
@@ -51,5 +62,10 @@
   <div class="mt-4">
     <a href="{% url 'post_list' %}" class="btn btn-secondary btn-sm">← Back to Posts</a>
   </div>
-{% endblock %}
   
+  {% block extra_js %}
+  {% load static %}
+  <script src="{% static 'js/like_dislike.js' %}"></script> 
+  {% endblock %}
+
+{% endblock content %}
