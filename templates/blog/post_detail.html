@@ -7,7 +7,7 @@
     <p class="text-muted">{{ post.created_at|date:"F j, Y" }} by {{ post.author }}</p>
 
     <article class="post-body mt-4">
-      {{ post.content|linebreaks}}
+      {{ post.content|markdownify }}
     </article>
     
   <div class="like-dislike-section my-4"
