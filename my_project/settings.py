@@ -24,23 +24,27 @@ environ.Env.read_env(
 # Importing dj_database_url to handle database configuration
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
-DATABASES = {
-    'default': dj_database_url.config(conn_max_age=600, ssl_require=True)
-}
-
-if os.getenv("DATABASE_URL"):  # for Heroku
+if os.getenv("DATABASE_URL"):  # production (Heroku)
     DATABASES = {
-        'default': dj_database_url.config(conn_max_age=600, ssl_require=True)
+        'default': dj_database_url.config(
+            default=os.getenv("DATABASE_URL"),
+            conn_max_age=600,
+            ssl_require=True
+        )
     }
+    # Ensure ssl mode and connection pooling are set when using a URL
+    DATABASES['default'].setdefault('OPTIONS', {})
+    DATABASES['default']['OPTIONS'].update({'sslmode': 'require'})
+    DATABASES['default']['CONN_MAX_AGE'] = 600
 else:  # for local dev
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
-            'NAME': 'my_blog_test',
-            'USER': 'postgres',
-            'PASSWORD': 'postgres',
-            'HOST': 'localhost',
-            'PORT': '5432',
+            'NAME': env('DB_NAME', default='my_blog_test'),
+            'USER': env('DB_USER', default='postgres'),
+            'PASSWORD': env('DB_PASSWORD', default='postgres'),
+            'HOST': env('DB_HOST', default='localhost'),
+            'PORT': env('DB_PORT', default='5432'),
         }
     }
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -160,3 +164,4 @@ STATICFILES_STORAGE = (
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
