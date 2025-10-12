@@ -14,7 +14,7 @@ from pathlib import Path
 import dj_database_url
 import os
 import environ
-env = environ.Env(DEBUG=(bool, False))
+env = environ.Env(DEBUG=(bool, True))
 environ.Env.read_env(
     os.path.join(
         Path(__file__).resolve().parent.parent,
