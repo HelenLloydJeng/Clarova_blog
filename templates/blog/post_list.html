@@ -1,30 +1,32 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  <h1>All Posts</h1>
+ <h1>All Posts</h1>
 
-  {% if user.is_authenticated and (user.is_staff or user.is_superuser) %}
+{% if request.user.is_authenticated %}
+{% if request.user.is_staff or request.user.is_superuser %}
 <p><a href="{% url 'post_create' %}" class="action-link">+ New Post</a></p>
-{% endif %}
+    {% endif %} 
+{% endif %}   {% if posts %}
+ {% for post in posts %}
+ <div class="post-item">
+<  h3><a href="{% url 'post_detail' post.pk %}">{{ post.title }}</a></h3>
+    <p class="meta">{{ post.created_at|date:"F j, Y" }} by {{ post.author }}</p>
 
-  {% if posts %}
-    {% for post in posts %}
-      <div class="post-item">
-        <h3><a href="{% url 'post_detail' post.pk %}">{{ post.title }}</a></h3>
-        <p class="meta">{{ post.created_at|date:"F j, Y" }} by {{ post.author }}</p>
-
-         <p class="text-muted mb-0">
-         {{ post.content|truncatewords:40|safe }}
-          </p>
+          p class="text-muted mb-0">
+           {{ post.content|truncatewords:40|safe }}
+        </p>
 
 
         <p>
           <a href="{% url 'post_detail' post.pk %}" class="action-link">Read more</a>
-                    {% if user.is_authenticated and (user == post.author or user.is_staff) %}
-            <a href="{% url 'post_update' post.pk %}" class="action-link">Edit</a>
+ 
+              {% if user.is_authenticated %}
+              {% if user == post.author or user.is_staff %}
+           <a href="{% url 'post_update' post.pk %}" class="action-link">Edit</a>
             <a href="{% url 'post_delete' post.pk %}" class="action-link danger">Delete</a>
-          {% endif %}
-        </p>
+                    {% endif %}
+              {% endif %}         </p>
       </div>
       <hr>
     {% endfor %}
