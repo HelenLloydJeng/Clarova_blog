@@ -1,7 +1,8 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Post
 from .forms import PostForm, CommentForm
-from django.contrib.auth.decorators import login_required
+from django.http import Http404  # Import for cleaner error handling
+from django.contrib.auth.decorators import login_required, user_passes_test
 
 
 def home(request):
@@ -40,6 +41,10 @@ def post_detail(request, pk):
         'comment_form': comment_form,
     })
 
+
+@user_passes_test(lambda user: user.is_staff or user.is_superuser)
+# login_required is technically redundant if user_passes_test is used,
+# but it's kept for clarity
 @login_required
 def post_create(request):
     if request.method == "POST":
@@ -53,8 +58,22 @@ def post_create(request):
         form = PostForm()
     return render(request, 'blog/post_form.html', {'form': form})
 
+
+@login_required
 def post_update(request, pk):
     post = get_object_or_404(Post, pk=pk)
+    # DEFENSIVE DESIGN: Check if the user is authorized
+    # ----------------------------------------------------
+    if (
+        request.user != post.author
+        and not request.user.is_staff
+        and not request.user.is_superuser
+    ):
+        # If the user is neither the author nor staff/admin,
+        # raise a permission error
+        # This is a key part of defensive design
+        raise Http404("You are not authorized to edit this post.")
+
     if request.method == "POST":
         form = PostForm(request.POST, instance=post)
         if form.is_valid():
@@ -65,8 +84,18 @@ def post_update(request, pk):
     return render(request, 'blog/post_form.html', {'form': form})
 
 
+@login_required
 def post_delete(request, pk):
     post = get_object_or_404(Post, pk=pk)
+    # ----------------------------------------------------
+    # DEFENSIVE DESIGN: Check if the user is authorized
+    # ----------------------------------------------------
+    if (
+        request.user != post.author
+        and not request.user.is_staff
+        and not request.user.is_superuser
+    ):
+        raise Http404("You are not authorized to delete this post.")
     if request.method == "POST":
         post.delete()
         return redirect('post_list')
