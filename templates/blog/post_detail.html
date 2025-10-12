@@ -8,25 +8,30 @@
       {{ post.content|safe }} 
     </article>
     
-    <div class="like-dislike-section my-4" data-post-id="{{ post.pk }}">
-        {% if user.is_authenticated %}
-            <button class="btn btn-sm {% if user_has_liked %}btn-primary{% else %}btn-outline-primary{% endif %}" 
-                    id="like-button">
-                <i class="far fa-thumbs-up"></i> Like (<span id="like-count">{{ post.total_likes }}</span>)
-            </button>
-            
-            <button class="btn btn-sm {% if user_has_disliked %}btn-danger{% else %}btn-outline-danger{% endif %}" 
-                    id="dislike-button">
-                <i class="far fa-thumbs-down"></i> Dislike (<span id="dislike-count">{{ post.total_dislikes }}</span>)
-            </button>
-        {% else %}
-            <span class="badge bg-primary">Likes: {{ post.total_likes }}</span>
-            <span class="badge bg-danger">Dislikes: {{ post.total_dislikes }}</span>
-            <small class="text-muted ms-2"><a href="{% url 'login' %}">Log in</a> to vote.</small>
-        {% endif %}
-    </div>
-    
-  </div>
+  <div class="like-dislike-section my-4"
+     data-post-id="{{ post.pk }}"
+     data-like-url="{% url 'like_post' pk=post.pk %}"
+     data-dislike-url="{% url 'dislike_post' pk=post.pk %}">
+  
+  {% if user.is_authenticated %}
+    <button type="button"
+            class="like-button btn btn-sm {% if user_has_liked %}btn-primary{% else %}btn-outline-primary{% endif %}">
+      <i class="far fa-thumbs-up"></i>
+      Like (<span class="like-count">{{ post.total_likes }}</span>)
+    </button>
+
+    <button type="button"
+            class="dislike-button btn btn-sm {% if user_has_disliked %}btn-danger{% else %}btn-outline-danger{% endif %}">
+      <i class="far fa-thumbs-down"></i>
+      Dislike (<span class="dislike-count">{{ post.total_dislikes }}</span>)
+    </button>
+  {% else %}
+    <span class="badge bg-primary">Likes: {{ post.total_likes }}</span>
+    <span class="badge bg-danger">Dislikes: {{ post.total_dislikes }}</span>
+    <small class="text-muted ms-2"><a href="{% url 'login' %}">Log in</a> to vote.</small>
+  {% endif %}
+</div>
+
 
   <hr>
 

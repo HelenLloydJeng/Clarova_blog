@@ -1,12 +1,12 @@
-from django.shortcuts import render, get_object_or_404 # Add get_object_or_404
+from django.shortcuts import render, get_object_or_404  # Add get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from django.urls import reverse_lazy
 from django.views.generic.edit import CreateView
-from django.http import JsonResponse # New import for AJAX
-from django.views.decorators.http import require_POST # New import for security
+from django.http import JsonResponse  # New import for AJAX
+from django.views.decorators.http import require_POST  # security
 
-from .models import Post # Import your Post model
+from blog.models import Post  # Import your Post model
 
 
 @login_required
@@ -20,6 +20,7 @@ class SignUpView(CreateView):
     success_url = reverse_lazy('login')
 
 # --- New Views for Likes/Dislikes ---
+
 
 @require_POST
 @login_required

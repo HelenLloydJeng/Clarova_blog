@@ -1,94 +1,77 @@
-// Wait for the entire document to load before running the script
-$(document).ready(function() {
-
-    // --- Helper function to get the CSRF token from the cookie ---
-    // Django requires this for POST requests (security)
-    function getCookie(name) {
-        let cookieValue = null;
-        if (document.cookie && document.cookie !== '') {
-            const cookies = document.cookie.split(';');
-            for (let i = 0; i < cookies.length; i++) {
-                let cookie = jQuery.trim(cookies[i]);
-                // Does this cookie string begin with the name we want?
-                if (cookie.substring(0, name.length + 1) === (name + '=')) {
-                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                    break;
-                }
-            }
+// Run after DOM ready (ensure jQuery loads BEFORE this file)
+$(function () {
+  // CSRF helper
+  function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+      const cookies = document.cookie.split(';');
+      for (let i = 0; i < cookies.length; i++) {
+        const cookie = cookies[i].trim(); // native trim
+        if (cookie.substring(0, name.length + 1) === (name + '=')) {
+          cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+          break;
         }
-        return cookieValue;
+      }
     }
-    const csrftoken = getCookie('csrftoken');
+    return cookieValue;
+  }
+  const csrftoken = getCookie('csrftoken');
 
+  function performAction($button, actionUrl) {
+    const $section = $button.closest('.like-dislike-section');
 
-    // --- Main function to perform the AJAX request ---
-    function performAction(button, actionUrl) {
-        const postId = button.closest('.like-dislike-section').data('post-id');
-        // Replace the '0' placeholder in the URL with the actual Post ID
-        const finalUrl = actionUrl.replace('0', postId); 
+    $.ajax({
+      type: 'POST',
+      url: actionUrl,                       // already a full URL from data-*
+      headers: { 'X-CSRFToken': csrftoken },
+      success: function (response) {
+        if (response.status === 'ok') {
+          // Update only within this section
+          $section.find('.like-count').text(response.like_count);
+          $section.find('.dislike-count').text(response.dislike_count);
 
-        $.ajax({
-            type: 'POST',
-            url: finalUrl,
-            headers: { 'X-CSRFToken': csrftoken }, // Attach the CSRF token
-            
-            success: function(response) {
-                if (response.status === 'ok') {
-                    // 1. Update the display counts
-                    $('#like-count').text(response.like_count);
-                    $('#dislike-count').text(response.dislike_count);
+          const $likeBtn = $section.find('.like-button');
+          const $dislikeBtn = $section.find('.dislike-button');
 
-                    // 2. Update the button styles
-
-                    // Handle LIKE button changes
-                    const likeBtn = $('#like-button');
-                    if (response.hasOwnProperty('is_liked')) { // Only process if the response is from a LIKE action
-                        if (response.is_liked) {
-                            likeBtn.removeClass('btn-outline-primary').addClass('btn-primary');
-                            // If liked, make sure the dislike button is reset
-                            $('#dislike-button').removeClass('btn-danger').addClass('btn-outline-danger');
-                        } else {
-                            likeBtn.removeClass('btn-primary').addClass('btn-outline-primary');
-                        }
-                    }
-                    
-                    // Handle DISLIKE button changes
-                    const dislikeBtn = $('#dislike-button');
-                    if (response.hasOwnProperty('is_disliked')) { // Only process if the response is from a DISLIKE action
-                        if (response.is_disliked) {
-                            dislikeBtn.removeClass('btn-outline-danger').addClass('btn-danger');
-                            // If disliked, make sure the like button is reset
-                            $('#like-button').removeClass('btn-primary').addClass('btn-outline-primary');
-                        } else {
-                            dislikeBtn.removeClass('btn-danger').addClass('btn-outline-danger');
-                        }
-                    }
-
-                } else {
-                    alert('An error occurred during voting.');
-                }
-            },
-            error: function() {
-                alert('Could not connect to the server or process the request.');
+          if (Object.prototype.hasOwnProperty.call(response, 'is_liked')) {
+            if (response.is_liked) {
+              $likeBtn.removeClass('btn-outline-primary').addClass('btn-primary');
+              $dislikeBtn.removeClass('btn-danger').addClass('btn-outline-danger');
+            } else {
+              $likeBtn.removeClass('btn-primary').addClass('btn-outline-primary');
             }
-        });
-    }
+          }
 
-
-    // --- Event listener for the LIKE button ---
-    $('#like-button').on('click', function(e) {
-        e.preventDefault();
-        // The URL pattern from urls.py
-        const likeUrl = "{% url 'like_post' pk=0 %}"; 
-        performAction($(this), likeUrl);
+          if (Object.prototype.hasOwnProperty.call(response, 'is_disliked')) {
+            if (response.is_disliked) {
+              $dislikeBtn.removeClass('btn-outline-danger').addClass('btn-danger');
+              $likeBtn.removeClass('btn-primary').addClass('btn-outline-primary');
+            } else {
+              $dislikeBtn.removeClass('btn-danger').addClass('btn-outline-danger');
+            }
+          }
+        } else {
+          alert('An error occurred during voting.');
+        }
+      },
+      error: function () {
+        alert('Could not connect to the server or process the request.');
+      }
     });
+  }
 
-    // --- Event listener for the DISLIKE button ---
-    $('#dislike-button').on('click', function(e) {
-        e.preventDefault();
-        // The URL pattern from urls.py
-        const dislikeUrl = "{% url 'dislike_post' pk=0 %}"; 
-        performAction($(this), dislikeUrl);
-    });
+  // Delegated events (works even if content is injected later)
+  $(document).on('click', '.like-button', function (e) {
+    e.preventDefault();
+    const $section = $(this).closest('.like-dislike-section');
+    const likeUrl = $section.data('like-url');
+    performAction($(this), likeUrl);
+  });
 
+  $(document).on('click', '.dislike-button', function (e) {
+    e.preventDefault();
+    const $section = $(this).closest('.like-dislike-section');
+    const dislikeUrl = $section.data('dislike-url');
+    performAction($(this), dislikeUrl);
+  });
 });
