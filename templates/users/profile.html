@@ -1,49 +1,9 @@
 {% extends "base.html" %}
-{% block title %}User Profile{% endblock %}
 
 {% block content %}
-<div class="container py-5 text-center">
-    <h2>Welcome Back, {{ user.username }}!</h2>
-    <a href="{% url 'post_list' %}" class="btn btn-primary mt-3">Go to Blog</a>
-</div>
-{% endblock %}
-
-{% extends "base.html" %}
-{% block title %}Your Dashboard{% endblock %}
-
-{% block content %}
-<div class="row justify-content-center pt-5 pb-5">
-
-    <div class="col-md-8 col-lg-6">
-
-        <div class="card shadow-lg border-0" style="border-radius: 1rem; background-color: #e9ecef;"> 
-            <div class="card-body p-4 p-md-5 text-center">
-                
-                <h1 class="card-title display-5 mb-4 text-primary">
-                    Welcome Back, {{ user.username }}!
-                </h1>
-                
-                <hr class="my-4">
-
-                <a href="{% url 'post_list' %}" class="btn btn-success btn-lg w-100 mb-3">
-                    <i class="fas fa-list-alt me-2"></i> Browse All Blog Posts
-                </a>
-
-                {% if user.is_staff or user.is_superuser %}
-                <a href="{% url 'post_create' %}" class="btn btn-outline-info w-100">
-                    <i class="fas fa-pencil-alt me-2"></i> Write a New Post
-                </a>
-                {% endif %}
-                
-                <hr class="my-4">
-
-                <p class="text-sm text-muted mb-0">
-                    Logged in as: **{{ user.email }}**
-                </p>
-                
-            </div>
-        </div>
+    <div class="container py-5 text-center">
+        <h2>Profile - Safe Mode Active</h2>
+        <p>Welcome, {{ user.username }}.</p>
+        <a href="{% url 'post_list' %}" class="btn btn-primary mt-3">Go to Blog Posts</a>
     </div>
-</div>
-
 {% endblock %}
