@@ -118,6 +118,36 @@ background-color: #00B6B4 !important; /* Fill on hover */
 color: white !important;             /* White text on hover */
 }
 
+ 
+/* --- Custom Styles for Like/Dislike Buttons --- */
+
+/* Style for the LIKE button (Positive/Green) */
+.like-btn {
+    /* Use a clear, positive color */
+    color: #198754; /* Bootstrap success green */
+    border-color: #198754;
+    font-weight: 600; /* Make text a bit bolder */
+}
+
+.like-btn:hover,
+.like-btn:focus {
+    color: #fff;
+    background-color: #198754; 
+    border-color: #198754;
+}
+
+/* Style for the DISLIKE button (Distinct/Dark Contrast) */
+.dislike-btn {
+    color: #343a40; /* Dark text */
+    border-color: #343a40; /* Dark border */
+}
+
+.dislike-btn:hover,
+.dislike-btn:focus {
+    color: #fff;
+    background-color: #343a40; /* Fills with dark gray/black on hover */
+    border-color: #343a40;
+}
 .intro {
   padding: 80px 0;
 }
