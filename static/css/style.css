@@ -142,41 +142,51 @@ color: white !important;             /* White text on hover */
 .post-item .meta { color:#6c757d; }
 .post-item p { line-height: 1.7; }
 
-/* --- Liking/Disliking Button Styles (Customizing Bootstrap) --- */
+/* --- Liking/Disliking Button Styles (Using Clarova Brand Colors) --- */
 
-/* 1. Base Like Button (When not yet clicked: btn-outline-primary) */
+/* ----------------- LIKE BUTTON (Positive Action) ----------------- */
+/* Targets the .like-button when UNCLICKED (btn-outline-primary) */
 .like-button.btn-outline-primary {
-    color: #198754 !important; /* Force green text */
-    border-color: #198754 !important; /* Force green border */
+    color: #00B6B4 !important;      /* Teal text */
+    border-color: #00B6B4 !important; /* Teal border */
+    background-color: transparent !important;
 }
 
-/* 2. Active Like Button (When already clicked: btn-primary) */
+/* Targets the .like-button when CLICKED (btn-primary) */
 .like-button.btn-primary {
-    background-color: #198754 !important; /* Force green fill */
-    border-color: #198754 !important;
+    background-color: #00B6B4 !important; /* Teal fill */
+    border-color: #00B6B4 !important;
+    color: white !important;
 }
 
-/* 3. Base Dislike Button (When not yet clicked: btn-outline-danger) */
-.dislike-button.btn-outline-danger {
-    color: #6c757d !important; /* Force dark gray text */
-    border-color: #6c757d !important; /* Force dark gray border */
-}
-
-/* 4. Active Dislike Button (When already clicked: btn-danger) */
-.dislike-button.btn-danger {
-    background-color: #6c757d !important; /* Force dark gray fill */
-    border-color: #6c757d !important;
-}
-
-/* Ensure hover state matches new colors */
+/* Hover state for both Like buttons */
 .like-button.btn-outline-primary:hover,
 .like-button.btn-primary:hover {
-    background-color: #146c43 !important; /* Darker green on hover */
-    border-color: #146c43 !important;
+    background-color: #00A3A1 !important; /* Slightly darker teal on hover */
+    border-color: #00A3A1 !important;
+    color: white !important;
 }
 
+
+/* --------------- DISLIKE BUTTON (Negative Action) ---------------- */
+/* Targets the .dislike-button when UNCLICKED (btn-outline-danger) */
+.dislike-button.btn-outline-danger {
+    color: #343a40 !important;      /* Charcoal/Navy text */
+    border-color: #343a40 !important; /* Charcoal/Navy border */
+    background-color: transparent !important;
+}
+
+/* Targets the .dislike-button when CLICKED (btn-danger) */
+.dislike-button.btn-danger {
+    background-color: #343a40 !important; /* Charcoal/Navy fill */
+    border-color: #343a40 !important;
+    color: white !important;
+}
+
+/* Hover state for both Dislike buttons */
 .dislike-button.btn-outline-danger:hover,
 .dislike-button.btn-danger:hover {
-    background-color: #5a6268 !important; /* Darker gray on hover */
-    border-color: #5a6268 !important;
+    background-color: #23272b !important; /* Even darker Charcoal on hover */
+    border-color: #23272b !important;
+    color: white !important;
 }
