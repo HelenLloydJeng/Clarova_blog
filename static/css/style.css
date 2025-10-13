@@ -82,6 +82,18 @@ footer {
   margin: 20px 0;
 }
 
+/* --- Link Color Override (Fixes all blue writing/links) --- */
+a {
+    color: #00B6B4; /* Clarova Teal link color */
+    /* Add a subtle transition for a nice hover effect */
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #00A3A1; /* Slightly darker teal on hover */
+    text-decoration: none; /* Optional: Remove the underline on hover for a cleaner look */
+}
+
 /* Global button adjustments (e.g., overriding Bootstrap's default border-radius) */
 .btn {
   border-radius: 8px; /* Changed from 5px to 8px to match your custom button feel */
