@@ -23,7 +23,8 @@ footer {
 
 .post-card {
     background: #fff;
-    border-left: 5px solid #007bff;
+    /* This blue border is from a generic Bootstrap utility, consider changing if this card uses .border-primary:
+    border-left: 5px solid #007bff; */
     padding: 20px;
     margin-bottom: 20px;
     border-radius: 8px;
@@ -31,79 +32,77 @@ footer {
 }
 
 .post-detail {
-  padding: 1rem;
-  border: 1px solid #e1e1e1;
-  border-radius: 8px;
-  background-color: #fdfdfd;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    padding: 1rem;
+    border: 1px solid #e1e1e1;
+    border-radius: 8px;
+    background-color: #fdfdfd;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
 .comments-section h4 {
-  margin-bottom: 1rem;
+    margin-bottom: 1rem;
 }
 
 .comment {
-  background-color: #f8f9fa;
+    background-color: #f8f9fa;
 }
+
 /* Clarova Blog Home Styling */
 .hero {
-  position: relative;
-  background: url("../img/hero_image.jpg") no-repeat center center/cover;
-  color: white;
-  height: 80vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
+    position: relative;
+    background: url("../img/hero_image.jpg") no-repeat center center/cover;
+    color: white;
+    height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
 }
 
 .hero .overlay {
-  position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: rgba(0, 0, 0, 0.4);
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0, 0, 0, 0.4);
 }
 
 .hero-content {
-  position: relative;
-  z-index: 2;
-  max-width: 800px;
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
 }
 
 .hero h1 {
-  font-family: 'Poppins', sans-serif;
-  font-weight: 700;
-  font-size: 3rem;
-  color: #fff;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 3rem;
+    color: #fff;
 }
 
 .hero p {
-  font-family: 'Open Sans', sans-serif;
-  font-size: 1.2rem;
-  margin: 20px 0;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1.2rem;
+    margin: 20px 0;
 }
+
+/* --- Core Brand Overrides Start Here --- */
 
 /* --- Link Color Override (Fixes all blue writing/links) --- */
 a {
     color: #00B6B4; /* Clarova Teal link color */
-    /* Add a subtle transition for a nice hover effect */
     transition: color 0.3s ease;
 }
 
 a:hover {
     color: #00A3A1; /* Slightly darker teal on hover */
-    text-decoration: none; /* Optional: Remove the underline on hover for a cleaner look */
+    text-decoration: none;
 }
 
 /* --- Text Color Override (Fixes 'Welcome Back' or any text-primary blue) --- */
-
-/* Targets the Bootstrap text-primary class (usually blue) and forces it to be Teal */
 .text-primary {
     color: #00B6B4 !important; /* Clarova Teal */
 }
 
 /* --- Specific Button Color Override (Fixes the Green Button) --- */
-
-/* Targets the Bootstrap success button (usually green) and forces it to be Teal */
 .btn-success {
     background-color: #00B6B4 !important; /* Clarova Teal fill */
     border-color: #00B6B4 !important;
@@ -115,15 +114,15 @@ a:hover {
     border-color: #00A3A1 !important;
 }
 
-
-/* Global button adjustments (e.g., overriding Bootstrap's default border-radius) */
+/* Global button adjustments */
 .btn {
-  border-radius: 8px; /* Changed from 5px to 8px to match your custom button feel */
-  font-weight: 600;   /* Use 600 weight for all buttons */
-  transition: all 0.3s ease;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all 0.3s ease;
 }
 
 
+/* --- Global Button Styles (Log In, Sign Up, Post Comment) --- */
 
 /* Primary Button (Overrides Bootstrap .btn-primary) */
 .btn-primary {
@@ -133,97 +132,66 @@ a:hover {
 }
 
 .btn-primary:hover {
-    /* CORRECTED TO USE DARKER TEAL */
-    background-color: #00A3A1 !important; 
+    background-color: #00A3A1 !important; /* Darker Teal on hover */
     border-color: #00A3A1 !important;
 }
 
-/* Secondary Button (Overrides Bootstrap .btn-secondary) */
+/* Secondary Button (Overrides Bootstrap .btn-secondary - e.g. Back button) */
 .btn-secondary {
-    /* CORRECTED TO USE CLAROVA CHARCOAL */
     border: 2px solid #343a40 !important; /* Clarova Charcoal border */
     color: #343a40 !important;           /* Clarova Charcoal text color */
     background-color: transparent !important;
 }
 
 .btn-secondary:hover {
-    /* CORRECTED TO USE CLAROVA CHARCOAL */
     background-color: #343a40 !important; /* Fill with Charcoal on hover */
-    color: white !important;             /* White text on hover */
-}
- 
-
-.intro {
-  padding: 80px 0;
+    color: white !important;
 }
 
-.intro h2 {
-  font-family: 'Poppins', sans-serif;
-  font-weight: 600;
-  color: #333;
-}
 
-.intro p {
-  font-family: 'Open Sans', sans-serif;
-  font-size: 1.1rem;
-  color: #555;
-  max-width: 700px;
-  margin: 20px auto 40px;
-}
+/* --- Liking/Disliking Button Styles (Post Page) --- */
 
-.post.content p { margin-bottom: 1rem; line-height: 1.7; }
-.post-body p { margin-bottom: 1rem; line-height: 1.7; }
-.post-item .meta { color:#6c757d; }
-.post-item p { line-height: 1.7; }
-
-/* --- Liking/Disliking Button Styles (Using Clarova Brand Colors) --- */
-
-/* ----------------- LIKE BUTTON (Positive Action) ----------------- */
-/* Targets the .like-button when UNCLICKED (btn-outline-primary) */
+/* LIKE BUTTON */
 .like-button.btn-outline-primary {
     color: #00B6B4 !important;      /* Teal text */
     border-color: #00B6B4 !important; /* Teal border */
     background-color: transparent !important;
 }
 
-/* Targets the .like-button when CLICKED (btn-primary) */
 .like-button.btn-primary {
     background-color: #00B6B4 !important; /* Teal fill */
     border-color: #00B6B4 !important;
     color: white !important;
 }
 
-/* Hover state for both Like buttons */
 .like-button.btn-outline-primary:hover,
 .like-button.btn-primary:hover {
-    background-color: #00A3A1 !important; /* Slightly darker teal on hover */
+    background-color: #00A3A1 !important;
     border-color: #00A3A1 !important;
     color: white !important;
 }
 
 
-/* --------------- DISLIKE BUTTON (Negative Action) ---------------- */
-/* Targets the .dislike-button when UNCLICKED (btn-outline-danger) */
+/* DISLIKE BUTTON */
 .dislike-button.btn-outline-danger {
     color: #343a40 !important;      /* Charcoal/Navy text */
     border-color: #343a40 !important; /* Charcoal/Navy border */
     background-color: transparent !important;
 }
 
-/* Targets the .dislike-button when CLICKED (btn-danger) */
 .dislike-button.btn-danger {
     background-color: #343a40 !important; /* Charcoal/Navy fill */
     border-color: #343a40 !important;
     color: white !important;
 }
 
-/* Hover state for both Dislike buttons */
 .dislike-button.btn-outline-danger:hover,
 .dislike-button.btn-danger:hover {
-    background-color: #23272b !important; /* Even darker Charcoal on hover */
+    background-color: #23272b !important;
     border-color: #23272b !important;
     color: white !important;
 }
+
 /* --- Clarova Brand Overrides for Badges (Logged Out State) --- */
 
 /* Fixes the "Likes" Badge color */
@@ -236,28 +204,35 @@ a:hover {
     background-color: #343a40 !important; /* Clarova Charcoal */
 }
 
-/* --- High-Specificity Navbar Button Overrides --- */
+/* --- Ultra-High Specificity Navbar Button Overrides (FINAL FIX) --- */
 
-/* Targets primary buttons specifically inside the navbar (e.g., "All Posts") */
-.navbar .btn-primary {
+/* Targets PRIMARY buttons/links inside the navbar (e.g., "All Posts") */
+/* Targeting a.btn-primary inside the main navigation list (.navbar-nav) */
+.navbar-nav .btn-primary,
+.navbar-nav a.btn-primary {
     background-color: #00B6B4 !important; /* Clarova Teal fill */
     border-color: #00B6B4 !important;
+    color: white !important;
 }
 
-.navbar .btn-primary:hover {
+.navbar-nav .btn-primary:hover,
+.navbar-nav a.btn-primary:hover {
     background-color: #00A3A1 !important; /* Darker Teal fill on hover */
     border-color: #00A3A1 !important;
 }
 
 
-/* Targets secondary buttons specifically inside the navbar (e.g., "Log Out") */
-.navbar .btn-secondary {
+/* Targets SECONDARY buttons/links inside the navbar (e.g., "Log Out") */
+/* Targeting a.btn-secondary inside the main navigation list (.navbar-nav) */
+.navbar-nav .btn-secondary,
+.navbar-nav a.btn-secondary {
     border-color: #343a40 !important; /* Clarova Charcoal border */
     color: #343a40 !important;       /* Clarova Charcoal text */
     background-color: transparent !important;
 }
 
-.navbar .btn-secondary:hover {
+.navbar-nav .btn-secondary:hover,
+.navbar-nav a.btn-secondary:hover {
     background-color: #343a40 !important; /* Clarova Charcoal fill on hover */
     color: white !important;
 }
