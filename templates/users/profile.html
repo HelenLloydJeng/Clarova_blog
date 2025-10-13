@@ -1,45 +1,6 @@
 {% extends "base.html" %}
-{% block title %}Your Dashboard{% endblock %}
 
 {% block content %}
-<div class="row justify-content-center pt-5 pb-5">
-
-    <div class="col-md-8 col-lg-6">
-
-        <div class="card shadow-lg border-0 bg-light-subtle animated-fade-in"> 
-            <div class="card-body p-4 p-md-5 text-center">
-                
-                <h1 class="card-title display-5 mb-3 text-primary">
-                    Hello, {{ user.username }}!
-                </h1>
-                
-                <p class="lead text-muted">
-                    Your hub is ready. Dive back into the world of AI and technology posts!
-                </p>
-
-                <hr class="my-4">
-
-                <a href="{% url 'post_list' %}" class="btn btn-success btn-lg w-100 mb-3" style="font-size: 1.2rem;">
-                    <i class="fas fa-book-open me-2"></i> Read New Blog Posts
-                </a>
-
-                {% if user.is_staff or user.is_superuser %}
-                <a href="{% url 'create_post' %}" class="btn btn-outline-secondary w-100">
-                    <i class="fas fa-feather-alt me-2"></i> Start a New Post
-                </a>
-                {% endif %}
-                
-            </div>
-        </div>
-        
-        <div class="mt-4 text-center">
-            <p class="text-sm text-muted">
-                Quick Access: Your email is **{{ user.email }}**.
-                You can manage all your settings via the navigation bar.
-            </p>
-        </div>
-
-    </div>
-</div>
-
+  <h2>Welcome, {{ user.username }}!</h2>
+  <p>This is your profile page.</p>
 {% endblock %}
