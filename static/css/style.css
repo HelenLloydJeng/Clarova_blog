@@ -114,6 +114,32 @@ a:hover {
     background-color: #00A3A1 !important; /* Slightly darker teal on hover */
     border-color: #00A3A1 !important;
 }
+
+/* --- High-Specificity Navbar Button Overrides --- */
+
+/* Targets primary buttons specifically inside the navbar (e.g., "All Posts") */
+.navbar .btn-primary {
+    background-color: #00B6B4 !important; /* Clarova Teal fill */
+    border-color: #00B6B4 !important;
+}
+
+.navbar .btn-primary:hover {
+    background-color: #00A3A1 !important; /* Darker Teal fill on hover */
+    border-color: #00A3A1 !important;
+}
+
+
+/* Targets secondary buttons specifically inside the navbar (e.g., "Log Out") */
+.navbar .btn-secondary {
+    border-color: #343a40 !important; /* Clarova Charcoal border */
+    color: #343a40 !important;       /* Clarova Charcoal text */
+    background-color: transparent !important;
+}
+
+.navbar .btn-secondary:hover {
+    background-color: #343a40 !important; /* Clarova Charcoal fill on hover */
+    color: white !important;
+}
 /* Global button adjustments (e.g., overriding Bootstrap's default border-radius) */
 .btn {
   border-radius: 8px; /* Changed from 5px to 8px to match your custom button feel */
