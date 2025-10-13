@@ -117,37 +117,8 @@ color: #00B6B4 !important;           /* Your custom teal text color */
 background-color: #00B6B4 !important; /* Fill on hover */
 color: white !important;             /* White text on hover */
 }
-
  
-/* --- Custom Styles for Like/Dislike Buttons --- */
 
-/* Style for the LIKE button (Positive/Green) */
-.like-btn {
-    /* Use a clear, positive color */
-    color: #198754; /* Bootstrap success green */
-    border-color: #198754;
-    font-weight: 600; /* Make text a bit bolder */
-}
-
-.like-btn:hover,
-.like-btn:focus {
-    color: #fff;
-    background-color: #198754; 
-    border-color: #198754;
-}
-
-/* Style for the DISLIKE button (Distinct/Dark Contrast) */
-.dislike-btn {
-    color: #343a40; /* Dark text */
-    border-color: #343a40; /* Dark border */
-}
-
-.dislike-btn:hover,
-.dislike-btn:focus {
-    color: #fff;
-    background-color: #343a40; /* Fills with dark gray/black on hover */
-    border-color: #343a40;
-}
 .intro {
   padding: 80px 0;
 }
@@ -171,4 +142,41 @@ color: white !important;             /* White text on hover */
 .post-item .meta { color:#6c757d; }
 .post-item p { line-height: 1.7; }
 
+/* --- Liking/Disliking Button Styles (Customizing Bootstrap) --- */
 
+/* 1. Base Like Button (When not yet clicked: btn-outline-primary) */
+.like-button.btn-outline-primary {
+    color: #198754 !important; /* Force green text */
+    border-color: #198754 !important; /* Force green border */
+}
+
+/* 2. Active Like Button (When already clicked: btn-primary) */
+.like-button.btn-primary {
+    background-color: #198754 !important; /* Force green fill */
+    border-color: #198754 !important;
+}
+
+/* 3. Base Dislike Button (When not yet clicked: btn-outline-danger) */
+.dislike-button.btn-outline-danger {
+    color: #6c757d !important; /* Force dark gray text */
+    border-color: #6c757d !important; /* Force dark gray border */
+}
+
+/* 4. Active Dislike Button (When already clicked: btn-danger) */
+.dislike-button.btn-danger {
+    background-color: #6c757d !important; /* Force dark gray fill */
+    border-color: #6c757d !important;
+}
+
+/* Ensure hover state matches new colors */
+.like-button.btn-outline-primary:hover,
+.like-button.btn-primary:hover {
+    background-color: #146c43 !important; /* Darker green on hover */
+    border-color: #146c43 !important;
+}
+
+.dislike-button.btn-outline-danger:hover,
+.dislike-button.btn-danger:hover {
+    background-color: #5a6268 !important; /* Darker gray on hover */
+    border-color: #5a6268 !important;
+}
