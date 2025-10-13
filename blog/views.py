@@ -1,13 +1,13 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Post
 from .forms import PostForm, CommentForm
-from django.http import Http404  # Import for cleaner error handling
+from django.http import Http404, HttpResponse
+# Import for cleaner error handling
 from django.contrib.auth.decorators import login_required, user_passes_test
 
 
 def home(request):
     return render(request, 'home.html')
-
 
 # Create your views here.
 
@@ -100,15 +100,3 @@ def post_delete(request, pk):
         post.delete()
         return redirect('post_list')
     return render(request, 'blog/post_confirm_delete.html', {'post': post})
-
-from django.http import HttpResponse
-
-def intentional_crash_view(request):
-    """A temporary view to intentionally raise a 500 Internal Server Error."""
-    if request.user.is_superuser: 
-        # Attempt to divide by zero, which raises a ZeroDivisionError (a type of 500)
-        result = 1 / 0
-        return HttpResponse(f"Result: {result}")
-    else:
-        # Prevent non-superusers from crashing the live site unnecessarily
-        return HttpResponse("Permission denied for crash test.")
