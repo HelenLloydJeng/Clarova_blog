@@ -93,15 +93,15 @@ footer {
 
 /* Primary Button (Overrides Bootstrap .btn-primary) */
 .btn-primary {
-background-color: #4A6EDB; /* Your custom blue */
-color: white;
-    /* !important ensures your color overrides Bootstrap's default */
-    border-color: #4A6EDB !important; 
+    background-color: #00B6B4 !important; /* Clarova Teal */
+    color: white !important;
+    border-color: #00B6B4 !important; 
 }
 
 .btn-primary:hover {
-background-color: #3A5CC7; /* Your custom darker blue on hover */
-border-color: #3A5CC7 !important;
+    /* CORRECTED TO USE DARKER TEAL CONSISTENT WITH BRAND */
+    background-color: #00A3A1 !important; /* Slightly darker teal on hover */
+    border-color: #00A3A1 !important;
 }
 
 /* Secondary Button (Overrides Bootstrap .btn-secondary) */
@@ -189,4 +189,15 @@ color: white !important;             /* White text on hover */
     background-color: #23272b !important; /* Even darker Charcoal on hover */
     border-color: #23272b !important;
     color: white !important;
+}
+/* --- Clarova Brand Overrides for Badges (Logged Out State) --- */
+
+/* Fixes the "Likes" Badge color */
+.badge.bg-primary {
+    background-color: #00B6B4 !important; /* Clarova Teal */
+}
+
+/* Fixes the "Dislikes" Badge color */
+.badge.bg-danger {
+    background-color: #343a40 !important; /* Clarova Charcoal */
 }
