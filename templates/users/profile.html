@@ -1,9 +1,36 @@
 {% extends "base.html" %}
+{% block title %}Your Profile Dashboard{% endblock %}
 
 {% block content %}
-    <div class="container py-5 text-center">
-        <h2>Profile - Safe Mode Active</h2>
-        <p>Welcome, {{ user.username }}.</p>
-        <a href="{% url 'post_list' %}" class="btn btn-primary mt-3">Go to Blog Posts</a>
+<div class="row justify-content-center pt-5 pb-5">
+
+    <div class="col-md-8 col-lg-6">
+
+        <div class="card shadow-lg border-0 bg-light"> 
+            <div class="card-body p-4 p-md-5 text-center">
+                
+                <h1 class="card-title display-5 mb-3 text-primary">
+                    Welcome Back, {{ user.username }}!
+                </h1>
+                
+                <p class="lead text-muted">
+                    Your account is active. Dive back into the world of AI and technology posts!
+                </p>
+
+                <hr class="my-4">
+
+                <a href="{% url 'post_list' %}" class="btn btn-success btn-lg w-100 mb-3" style="font-size: 1.2rem;">
+                    Browse All Blog Posts
+                </a>
+
+                <div class="mt-3">
+                    <p class="text-sm text-muted mb-0">
+                        **Email:** {{ user.email }}
+                    </p>
+                </div>
+            </div>
+        </div>
+        
     </div>
+</div>
 {% endblock %}
