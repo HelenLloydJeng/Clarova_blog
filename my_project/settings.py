@@ -14,6 +14,7 @@ from pathlib import Path
 import dj_database_url
 import os
 import environ
+from django.contrib import messages
 env = environ.Env(DEBUG=(bool, True))
 environ.Env.read_env(
     os.path.join(
@@ -104,6 +105,13 @@ TEMPLATES = [
         },
     },
 ]
+MESSAGE_TAGS = { # <--- CRITICAL MAPPING MISSING
+    messages.DEBUG: 'alert-secondary',
+    messages.INFO: 'alert-info',
+    messages.SUCCESS: 'alert-success',
+    messages.WARNING: 'alert-warning',
+    messages.ERROR: 'alert-danger',
+}
 
 WSGI_APPLICATION = 'my_project.wsgi.application'
 
@@ -154,11 +162,6 @@ LOGOUT_REDIRECT_URL = '/'
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / 'static']
 STATIC_ROOT = BASE_DIR / 'staticfiles'
-
-STATICFILES_STORAGE = (
-    "whitenoise.storage.CompressedManifest"
-    "StaticFilesStorage"
-)
 
 
 # Default primary key field type
