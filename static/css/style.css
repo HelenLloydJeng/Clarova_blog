@@ -94,6 +94,26 @@ a:hover {
     text-decoration: none; /* Optional: Remove the underline on hover for a cleaner look */
 }
 
+/* --- Text Color Override (Fixes 'Welcome Back' or any text-primary blue) --- */
+
+/* Targets the Bootstrap text-primary class (usually blue) and forces it to be Teal */
+.text-primary {
+    color: #00B6B4 !important; /* Clarova Teal */
+}
+
+/* --- Specific Button Color Override (Fixes the Green Button) --- */
+
+/* Targets the Bootstrap success button (usually green) and forces it to be Teal */
+.btn-success {
+    background-color: #00B6B4 !important; /* Clarova Teal fill */
+    border-color: #00B6B4 !important;
+    color: white !important;
+}
+
+.btn-success:hover {
+    background-color: #00A3A1 !important; /* Slightly darker teal on hover */
+    border-color: #00A3A1 !important;
+}
 /* Global button adjustments (e.g., overriding Bootstrap's default border-radius) */
 .btn {
   border-radius: 8px; /* Changed from 5px to 8px to match your custom button feel */
