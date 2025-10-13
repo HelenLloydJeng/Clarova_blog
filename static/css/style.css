@@ -115,31 +115,7 @@ a:hover {
     border-color: #00A3A1 !important;
 }
 
-/* --- High-Specificity Navbar Button Overrides --- */
 
-/* Targets primary buttons specifically inside the navbar (e.g., "All Posts") */
-.navbar .btn-primary {
-    background-color: #00B6B4 !important; /* Clarova Teal fill */
-    border-color: #00B6B4 !important;
-}
-
-.navbar .btn-primary:hover {
-    background-color: #00A3A1 !important; /* Darker Teal fill on hover */
-    border-color: #00A3A1 !important;
-}
-
-
-/* Targets secondary buttons specifically inside the navbar (e.g., "Log Out") */
-.navbar .btn-secondary {
-    border-color: #343a40 !important; /* Clarova Charcoal border */
-    color: #343a40 !important;       /* Clarova Charcoal text */
-    background-color: transparent !important;
-}
-
-.navbar .btn-secondary:hover {
-    background-color: #343a40 !important; /* Clarova Charcoal fill on hover */
-    color: white !important;
-}
 /* Global button adjustments (e.g., overriding Bootstrap's default border-radius) */
 .btn {
   border-radius: 8px; /* Changed from 5px to 8px to match your custom button feel */
@@ -157,23 +133,23 @@ a:hover {
 }
 
 .btn-primary:hover {
-    /* CORRECTED TO USE DARKER TEAL CONSISTENT WITH BRAND */
-    background-color: #00A3A1 !important; /* Slightly darker teal on hover */
+    /* CORRECTED TO USE DARKER TEAL */
+    background-color: #00A3A1 !important; 
     border-color: #00A3A1 !important;
 }
 
 /* Secondary Button (Overrides Bootstrap .btn-secondary) */
 .btn-secondary {
-    /* Use !important to ensure your custom color and border are applied,
-       as Bootstrap's secondary class might have specific rules. */
-border: 2px solid #00B6B4 !important; /* Your custom teal border */
-color: #00B6B4 !important;           /* Your custom teal text color */
-    background-color: transparent !important; /* Ensure it stays a ghost button */
+    /* CORRECTED TO USE CLAROVA CHARCOAL */
+    border: 2px solid #343a40 !important; /* Clarova Charcoal border */
+    color: #343a40 !important;           /* Clarova Charcoal text color */
+    background-color: transparent !important;
 }
 
 .btn-secondary:hover {
-background-color: #00B6B4 !important; /* Fill on hover */
-color: white !important;             /* White text on hover */
+    /* CORRECTED TO USE CLAROVA CHARCOAL */
+    background-color: #343a40 !important; /* Fill with Charcoal on hover */
+    color: white !important;             /* White text on hover */
 }
  
 
@@ -258,4 +234,30 @@ color: white !important;             /* White text on hover */
 /* Fixes the "Dislikes" Badge color */
 .badge.bg-danger {
     background-color: #343a40 !important; /* Clarova Charcoal */
+}
+
+/* --- High-Specificity Navbar Button Overrides --- */
+
+/* Targets primary buttons specifically inside the navbar (e.g., "All Posts") */
+.navbar .btn-primary {
+    background-color: #00B6B4 !important; /* Clarova Teal fill */
+    border-color: #00B6B4 !important;
+}
+
+.navbar .btn-primary:hover {
+    background-color: #00A3A1 !important; /* Darker Teal fill on hover */
+    border-color: #00A3A1 !important;
+}
+
+
+/* Targets secondary buttons specifically inside the navbar (e.g., "Log Out") */
+.navbar .btn-secondary {
+    border-color: #343a40 !important; /* Clarova Charcoal border */
+    color: #343a40 !important;       /* Clarova Charcoal text */
+    background-color: transparent !important;
+}
+
+.navbar .btn-secondary:hover {
+    background-color: #343a40 !important; /* Clarova Charcoal fill on hover */
+    color: white !important;
 }
