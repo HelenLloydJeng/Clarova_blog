@@ -100,3 +100,15 @@ def post_delete(request, pk):
         post.delete()
         return redirect('post_list')
     return render(request, 'blog/post_confirm_delete.html', {'post': post})
+
+from django.http import HttpResponse
+
+def intentional_crash_view(request):
+    """A temporary view to intentionally raise a 500 Internal Server Error."""
+    if request.user.is_superuser: 
+        # Attempt to divide by zero, which raises a ZeroDivisionError (a type of 500)
+        result = 1 / 0
+        return HttpResponse(f"Result: {result}")
+    else:
+        # Prevent non-superusers from crashing the live site unnecessarily
+        return HttpResponse("Permission denied for crash test.")
