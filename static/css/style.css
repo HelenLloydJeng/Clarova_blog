@@ -1,20 +1,30 @@
+:root {
+  --bs-primary: #00B6B4;
+  --bs-primary-rgb: 0,182,180;
+}
+
 body {
-    font-family: 'Segoe UI', sans-serif;
+    font-family: 'Open Sans', 'Segoe UI', sans-serif;
     background-color: #f9f9f9;
     color: #333;
 }
 
-h1, h2, h3 {
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Poppins', sans-serif;
     color: #1c1c1c;
 }
-
 .navbar {
     border-bottom: 1px solid #ddd;
 }
 
+
 footer {
     font-size: 0.9em;
     color: #999;
+    border-top: 1px solid #ddd;
+    padding: 1rem 0;
+    text-align: center;
+    background: #fff;
 }
 
 .btn {
@@ -35,6 +45,7 @@ footer {
     padding: 1rem;
     border: 1px solid #e1e1e1;
     border-radius: 8px;
+    line-height: 1.7;
     background-color: #fdfdfd;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
